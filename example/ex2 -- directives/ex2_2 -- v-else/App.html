@@ -1,0 +1,38 @@
+<!DOCTYPE html5>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>測試 v-else</h2>
+        <p>case 1</p>
+        <p v-if="persons">There are many people</p>
+        <p v-else>There are not many people</p>
+        <p>case 2</p>
+        <p v-if="people_count">I know how many people in the classroom.</p>
+        <p v-else>I don't know how many people in the classroom.</p>
+      </div>
+<script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        persons: [{
+            name: 'Ayda',
+            age: 18
+          },
+          {
+            name: 'Tracy',
+            age: 24
+          },
+          {
+            name: 'Philippe',
+            age: 42
+          }
+        ]
+      },
+    })
+</script>
+</body>
+
+</html>

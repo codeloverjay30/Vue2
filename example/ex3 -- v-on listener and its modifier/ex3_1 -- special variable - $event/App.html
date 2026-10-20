@@ -1,0 +1,58 @@
+<!DOCTYPE html5>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      <h2>測試 $event</h2>
+        <button @click="test1">test1</button>
+        <!-- 綁定自己的資料 -->
+        <button @click="test2('Hello')">test2</button>
+
+        <!-- 可利用vue的特殊變數$event 來拿到button的值 -->
+        <!-- 等同這樣寫： <button @clock="test3">test3</button> -->
+        <button @click="test3($event)">test3</button>
+
+        <!-- 想傳自己給的變數，同時想取得點取 event 的值 -->
+        <button @click="test4(42,$event )">test4</button>
+    </div>
+<script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        persons: [{
+            name: 'Ayda',
+            age: 18
+          },
+          {
+            name: 'Tracy',
+            age: 24
+          },
+          {
+            name: 'Philippe',
+            age: 42
+          }
+        ]
+      },
+      methods: {
+        test1() {
+          alert('test1')
+        },
+        test2(msg) {
+          alert(msg)
+        },
+        test3(event) {
+          // 透過 event裡的target與innerHTML去取得按鈕的內容
+          alert(event.target.innerHTML)
+        },
+        test4(nbr, event) {
+          alert(nbr + '---' + event.target.innerHTML)
+
+        },
+    }
+    })
+</script>
+</body>
+
+</html>

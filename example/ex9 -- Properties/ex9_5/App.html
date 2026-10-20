@@ -1,0 +1,81 @@
+<!DOCTYPE html5>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>{{ msg }}</div>
+        <text-tracy></text-tracy>
+        <hr />
+        <text-ayda></text-ayda>
+    </div>
+<script>
+    // 事件中心
+    let hub = new Vue();
+    // 兄弟元件間的資料傳遞
+    // 子元件 Tracy
+    Vue.component('text-tracy', {
+    data: function () {
+        return {
+        count: 0,
+        };
+    },
+    template: `
+        <div>
+        <div>Tracy: {{count}}</div>
+        <button @click="handle">Tracy click</button>
+        </div>
+        `,
+    methods: {
+        handle: function () {
+        // 觸發兄弟元件的事件
+        hub.$emit('ayda-event', 5);
+        },
+    },
+    // 生命週期綁定
+    mounted: function () {
+        // 監聽事件
+        hub.$on('tracy-event', (value) => {
+        this.count += value;
+        });
+    },
+    });
+    // 子元件 Ayda
+    Vue.component('text-ayda', {
+    data: function () {
+        return {
+        count: 0,
+        };
+    },
+    template: `
+        <div>
+        <div>Ayda: {{count}}</div>
+        <button @click="handle">Ayda click</button>
+        </div>
+        `,
+    methods: {
+        handle: function () {
+        // 觸發兄弟元件的事件
+        hub.$emit('tracy-event', 1);
+        },
+    },
+    // 生命週期綁定
+    mounted: function () {
+        // 監聽事件
+        hub.$on('ayda-event', (value) => {
+        this.count += value;
+        });
+    },
+    });
+
+    const vm = new Vue({
+    el: '#app',
+    data: {
+        msg: '父組件中的資料內容',
+    },
+    });
+</script>
+</body>
+
+</html>

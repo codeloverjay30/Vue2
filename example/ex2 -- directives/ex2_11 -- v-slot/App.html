@@ -1,0 +1,50 @@
+<!DOCTYPE html5>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <style>
+    .active{ border: 1px solid red; }
+  </style>
+  <div id="app">
+    <h2>測試 v-slot</h2>
+    <!-- Named slots -->
+    <BaseLayout>
+      <template v-slot:header>
+        Header content
+      </template>
+
+      <template v-slot:default>
+        Default slot content
+      </template>
+
+      <template v-slot:footer>
+        Footer content
+      </template>
+    </BaseLayout>
+
+    <!-- Named slot that receives props -->
+    <InfiniteScroll>
+      <template v-slot:item="slotProps">
+        <div class="item">
+          {{ slotProps.item.text }}
+        </div>
+      </template>
+    </InfiniteScroll>
+
+<!-- Default slot that receive props, with destructuring -->
+<Mouse v-slot="{ x, y }">
+  Mouse position: {{ x }}, {{ y }}
+</Mouse>
+  </div>
+<script>
+  const vm = new Vue({
+    el: '#app',
+    data: {
+    }
+  });
+</script>
+</body>
+
+</html>

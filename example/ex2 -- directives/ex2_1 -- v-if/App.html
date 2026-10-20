@@ -1,0 +1,33 @@
+<!DOCTYPE html5>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      <h2>測試 v-if</h2>
+      <p v-if="persons">There are many people </p>
+    </div>
+<script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        persons: [{
+            name: 'Ayda',
+            age: 18
+          },
+          {
+            name: 'Tracy',
+            age: 24
+          },
+          {
+            name: 'Philippe',
+            age: 42
+          }
+        ]
+      },
+    })
+</script>
+</body>
+
+</html>

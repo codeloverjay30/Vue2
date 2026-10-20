@@ -1,0 +1,32 @@
+<!DOCTYPE html5>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <item-text>Hello !</item-text>
+        <item-text>Bonjour !</item-text>
+        <item-text></item-text>
+    </div>
+<script>
+// 子元件
+    Vue.component('item-text', {
+        template: `
+            <div>
+            <strong>Say :</strong>
+            <slot>Nothing ！</slot>
+            </div>
+        `,
+    });
+    // 父元件
+    new Vue({
+        el:'#app',
+        data:{
+            
+        }
+    })
+</script>
+</body>
+
+</html>

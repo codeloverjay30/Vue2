@@ -1,0 +1,31 @@
+<!DOCTYPE html5>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      <h2>測試 custom global component</h2>
+      <div id="app">
+        <button-counter></button-counter>
+      </div>
+    </div>
+<script>
+    // 定義一個名為 button-counter 的新元件
+    Vue.component('button-counter', {
+    data: function () {
+        return {
+        count: 0,
+        };
+    },
+    template: '<button v-on:click="count++">Click on {{ count }} times</button>',
+    });
+    // 也別忘了要創建 Vue 的實例
+    const vm = new Vue({
+    el: '#app',
+    data: {},
+    });
+</script>
+</body>
+
+</html>

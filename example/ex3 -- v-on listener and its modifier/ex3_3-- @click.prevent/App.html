@@ -1,0 +1,40 @@
+<!DOCTYPE html5>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      <h2>測試 @click.prevent</h2>
+      <!-- 阻止事件默認行為 -->
+        <a href="http://google.com" @click.prevent="test7">去google</a>
+    </div>
+<script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        persons: [{
+            name: 'Ayda',
+            age: 18
+          },
+          {
+            name: 'Tracy',
+            age: 24
+          },
+          {
+            name: 'Philippe',
+            age: 42
+          }
+        ]
+      },
+    
+    methods:{
+      test7(event) {
+        alert('點到了')
+      },
+    }
+    })
+</script>
+</body>
+
+</html>

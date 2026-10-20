@@ -1,0 +1,53 @@
+<!DOCTYPE html5>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>{{ msg }}</div>
+        <text-bloc
+          :props-str="propsStr"
+          :props-num="postCode"
+          :props-boo="isVegan"
+          :props-arr="foods"
+          :props-obj="boos"
+        ></text-bloc>
+  </div>
+<script>
+// 子元件
+Vue.config.errorHandler = function (err, vm, info) {};
+  Vue.component('text-bloc', {
+    props: ['propsStr', 'propsNum', 'propsBoo', 'propsArr', 'propsObj'],
+    template: `
+      <div>
+        <div>{{ 'City: ' + propsStr }}</div>
+        <div>{{ 'post Code: ' + propsNum }}</div>
+        <div>{{ 12 + propsNum }}</div>
+        <div>{{ 'isVegan: ' + propsBoo }}</div>
+        <ul>
+          <li v-for="(item,index) in propsArr" :key='index'>{{item}}</li>
+        </ul>
+      <div>{{ propsObj.name}} : {{propsObj.age }}</div>
+    </div>
+      `,
+  });
+  // 父元件
+  const vm = new Vue({
+    el: '#app',
+    data: {
+      msg: '父元件中的資料內容',
+      propsStr: 'Paris',
+      postCode: 75,
+      isVegan: true,
+      foods: ['cafe', 'wine', 'apple'],
+      boos: {
+        name: 'Tracy',
+        age: 42,
+      },
+    },
+  });
+</script>
+</body>
+
+</html>

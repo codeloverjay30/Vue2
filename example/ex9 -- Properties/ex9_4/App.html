@@ -1,0 +1,37 @@
+<!DOCTYPE html5>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <menu-item @enlarge-text="handleBiggerSize"></menu-item>
+    </div>
+<script>
+    // 子元件 使用$emit(）傳遞
+    Vue.component('menu-item',{
+    template: `
+        <div>
+        <div >{{parentsMsg}}</div>
+        <button @click="$emit('enlarge-text')">放大父元件中元素的字體大小</button>
+        </div>
+    `
+    })
+    // 父元件
+    const vm= new Vue({
+    el:'#app',
+    data:{
+        parentsMsg: 'Hello, is parentsMsg',
+        fontSize: 16,
+    },
+    methods:{
+        handleBiggerSize: function(){
+        // 字體變大
+        this.fontSize += 5
+        },
+    }
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html5>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <style>
+    .active{ border: 1px solid red; }
+  </style>
+  <div id="app">
+    <h2>測試 v-bind</h2>
+      
+      <div id="app">
+        <img v-bind:src="imgSrc">
+        <img v-bind:titre="imgTitre + '!!' ">
+        <!-- 三元表達式的寫法/不建議 -->
+        <img :class="isActive?'active':'' " :title="imgTitre" @click="toggleStyle">
+        <!-- 以物件的方式寫法 -->
+        <img :class="{active:isActive}">
+        <input type="button" value="change Style" @click="toggleStyle"/>
+      
+      </div>
+  </div>
+<script>
+  const vm = new Vue({
+    el: '#app',
+    data: {
+      msgSrc: 'www.google.com/images/logo.png',
+      imgTitre: 'Hello google',
+      isActive: false,
+    },
+    methods: {
+      toggleStyle: function () {
+        this.isActive = !this.isActive;
+      },
+    },
+  });
+</script>
+</body>
+
+</html>

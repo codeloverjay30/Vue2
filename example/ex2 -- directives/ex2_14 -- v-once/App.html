@@ -1,0 +1,25 @@
+<!DOCTYPE html5>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      <h2>測試 v-once</h2>
+      <div v-once>
+        {{content}}
+      </div>
+    </div>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      content: '第一次的文字內容',
+    },
+  });
+  // 第二次給值渲染
+  app.content = '第二次的文字更新';
+</script>
+</body>
+
+</html>

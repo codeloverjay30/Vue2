@@ -1,0 +1,42 @@
+<!DOCTYPE html5>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>{{ '父組件資料(實例)msgP: ' + msgP}}</div>
+        <!-- 沒有傳值的狀態 -->
+        <menu-item></menu-item>
+        <!-- 靜態傳值 -->
+        <menu-item title-p="靜態傳來自父組件的值"></menu-item>
+        <!-- 動態傳值 -->
+        <menu-item :title-p="titleP" content="hello"></menu-item>
+      </div>
+  </div>
+<script>
+    // 全域的子組件
+    const vm = Vue.component('menu-item', {
+            // 在子組件中接收父組件的資料 props
+            props: ['titleP', 'content'],
+            data: function () {
+            return {
+                msg: '子組件的資料',
+            };
+            },
+            // 直接寫入父組件的資料
+            template: `<div> {{ msg + '-----' + titleP + '-----' + content }} </div>`,
+        });
+
+        // 實例本身就是父組件
+        const app = new Vue({
+            el: '#app',
+            data: {
+            msgP: 'Hello Paris 父組件資料',
+            titleP: '動態綁定父組件資料',
+            },
+        });
+</script>
+</body>
+
+</html>

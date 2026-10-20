@@ -1,0 +1,46 @@
+<!DOCTYPE html5>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      <h2>測試 @click.stop</h2>
+      <div class="box1" @click="test5">
+        <div class="box2" @click.stop="test6">
+          <h3> A nested heading 3</h3>  
+        </div>
+      </div>
+    </div>
+<script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        persons: [{
+            name: 'Ayda',
+            age: 18
+          },
+          {
+            name: 'Tracy',
+            age: 24
+          },
+          {
+            name: 'Philippe',
+            age: 42
+          }
+        ]
+      },
+    
+    methods:{
+        test5() {
+            alert('out')
+        },
+        test6() {
+            alert('inner')
+        },
+    }
+    })
+</script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html5>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <hello-paris></hello-paris>
+        <hello-taipei></hello-taipei>
+    </div>
+<script>
+    const vm = Vue.component('HelloParis', {
+        data: function () {
+          return {
+            msg: 'Hello France',
+          };
+        },
+        // <hello-taipei></hello-taipei> 無效且不會顯示出來
+        template: `
+          <div>{{msg}}
+          <hello-taipei></hello-taipei> 無效
+          </div>
+
+        `,
+      });
+      // 局部元件
+      const HelloTaipei = {
+        data: function () {
+          return {
+            msg: 'Hello Taipei',
+          };
+        },
+        template: '<div>{{ msg }}</div>',
+      };
+
+      const app = new Vue({
+        el: '#app',
+        data: {
+          msg: 'Hello Paris',
+        },
+        components: {
+          // 在實例裡註冊
+          'hello-taipei': HelloTaipei,
+        },
+      });
+</script>
+</body>
+
+</html>
